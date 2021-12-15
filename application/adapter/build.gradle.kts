@@ -15,4 +15,7 @@ dependencies {
     implementation(project(":application:port"))
 
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.keycloak:keycloak-spring-boot-starter")
+    implementation(platform("org.keycloak.bom:keycloak-adapter-bom:15.0.2"))
+    implementation("org.springframework.boot:spring-boot-starter-security")
 }
