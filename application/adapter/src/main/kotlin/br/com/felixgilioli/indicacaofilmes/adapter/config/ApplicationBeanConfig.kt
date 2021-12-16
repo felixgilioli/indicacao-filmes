@@ -4,6 +4,7 @@ import br.com.felixgilioli.indicacaofilmes.core.indicacao.BuscarTodasIndicacoesI
 import br.com.felixgilioli.indicacaofilmes.core.indicacao.RegistrarIndicacaoImpl
 import br.com.felixgilioli.indicacaofilmes.port.input.BuscarTodasIndicacoesPort
 import br.com.felixgilioli.indicacaofilmes.port.input.RegistrarIndicacaoPort
+import br.com.felixgilioli.indicacaofilmes.port.output.PersisteIndicacaoPort
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -14,5 +15,5 @@ class ApplicationBeanConfig {
     fun buscarTodasIndicacoesPort(): BuscarTodasIndicacoesPort = BuscarTodasIndicacoesImpl()
 
     @Bean
-    fun registrarIndicacaoPort(): RegistrarIndicacaoPort = RegistrarIndicacaoImpl()
+    fun registrarIndicacaoPort(persisteIndicacaoPort: PersisteIndicacaoPort): RegistrarIndicacaoPort = RegistrarIndicacaoImpl(persisteIndicacaoPort)
 }
