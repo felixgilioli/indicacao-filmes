@@ -6,7 +6,7 @@ volumes:
 
 services:
   postgres:
-    image: postgres
+    image: postgres:14.1
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
@@ -14,7 +14,7 @@ services:
       POSTGRES_USER: keycloak
       POSTGRES_PASSWORD: password
   keycloak:
-    image: quay.io/keycloak/keycloak:latest
+    image: quay.io/keycloak/keycloak:15.1.0
     environment:
       DB_VENDOR: POSTGRES
       DB_ADDR: postgres
@@ -28,3 +28,20 @@ services:
       - 8080:8080
     depends_on:
       - postgres
+
+  indicacao-filmes-postgres:
+    image: postgres
+    container_name: indicacao-filmes-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: "indicacao_filmes"
+      POSTGRES_PASSWORD: "1234"
+
+  flyway:
+    image: flyway/flyway:7.14-alpine
+    command: -url=jdbc:postgresql://indicacao-filmes-postgres:5432/indicacao_filmes -schemas=indicacao_filmes -user=postgres -password=1234 migrate
+    volumes:
+      - ./local/migration:/flyway/sql
+    depends_on:
+      - indicacao-filmes-postgres

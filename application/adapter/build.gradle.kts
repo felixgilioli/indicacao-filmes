@@ -18,4 +18,6 @@ dependencies {
     implementation("org.keycloak:keycloak-spring-boot-starter")
     implementation(platform("org.keycloak.bom:keycloak-adapter-bom:15.0.2"))
     implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
+    runtimeOnly("org.postgresql:postgresql")
 }
