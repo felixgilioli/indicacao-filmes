@@ -1,10 +1,10 @@
-package br.com.felixgilioli.indicacaofilmes.port.input
+package br.com.felixgilioli.indicacaofilmes.port.output
 
 import br.com.felixgilioli.indicacaofilmes.port.model.Indicacao
 import br.com.felixgilioli.indicacaofilmes.port.model.Pagina
 import br.com.felixgilioli.indicacaofilmes.port.model.PaginaRequest
 
-interface BuscarTodasIndicacoesPort {
+interface RecuperarIndicacoesPaginadasPort {
 
-    fun buscar(paginaRequest: PaginaRequest): Pagina<Indicacao>
+    fun recuperar(paginaRequest: PaginaRequest): Pagina<Indicacao>
 }
